@@ -22,22 +22,22 @@ for i in range(25):
 plt.savefig('RFC/dataset_input.jpg')
 plt.pause(1)
 plt.close()
-"""
+
 clf = RFC(verbose=True,       # 学習中にログを表示します。この指定はなくてもOK
           n_jobs=-1,          # 複数のCPUコアを使って並列に学習します。-1は最大値。
           random_state=2525)  # 乱数のシードです。
 clf.fit(train_images, train_labels)
 
 print(clf.feature_importances_)
-
+"""
 # Create a classifier: a support vector classifier
 clf = svm.SVC(gamma=0.001)
 # We learn the digits on the first half of the digits
 clf.fit(train_images, train_labels)
-"""
+
 clf = KNeighborsClassifier(n_neighbors=6) # インスタンス生成。n_neighbors:Kの数
 clf.fit(train_images, train_labels)
-
+"""
 #print(f"acc: {clf.score(test_images, test_labels)}")
 acc=clf.score(test_images, test_labels)*100
 print("acc:{:.2f} %".format(acc))
@@ -80,7 +80,7 @@ search_params = {
       'min_samples_split' : [3,4,5],  
       'max_depth'         : [13,15,18]  
 }
-
+"""
 search_params = {
      'n_estimators'      : [5, 10, 20, 30, 50, 100, 300],   
       'max_features'      : [3, 5, 10, 15, 20],  
@@ -89,6 +89,7 @@ search_params = {
       'min_samples_split' : [3, 5, 10, 15, 20, 25, 30, 40, 50, 100],  
       'max_depth'         : [3, 5, 10, 15, 20, 25, 30, 40, 50, 100]  
 }
+"""
 RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             max_depth=15, max_features=10, max_leaf_nodes=None,
             min_impurity_decrease=0.0, min_impurity_split=None,
@@ -97,7 +98,7 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             oob_score=False, random_state=2525, verbose=0,
             warm_start=False)
 acc:97.22 %
-
+"""
 
 gs = GridSearchCV(RFC(),           # 対象の機械学習モデル
                   search_params,   # 探索パラメタ辞書
@@ -140,7 +141,7 @@ for i in range(25):
 plt.savefig('RFC/RFC_best_results.jpg')
 plt.pause(1)
 plt.close()
-"""
+
 
 
  
