@@ -3,6 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier as RFC
 from sklearn.model_selection import train_test_split, GridSearchCV
+# Import datasets, classifiers and performance metrics
+from sklearn import datasets, svm, metrics
+from sklearn.neighbors import KNeighborsClassifier
 
 mnist = datasets.load_digits()
  
@@ -19,7 +22,7 @@ for i in range(25):
 plt.savefig('RFC/dataset_input.jpg')
 plt.pause(1)
 plt.close()
-
+"""
 clf = RFC(verbose=True,       # 学習中にログを表示します。この指定はなくてもOK
           n_jobs=-1,          # 複数のCPUコアを使って並列に学習します。-1は最大値。
           random_state=2525)  # 乱数のシードです。
@@ -27,6 +30,13 @@ clf.fit(train_images, train_labels)
 
 print(clf.feature_importances_)
 
+# Create a classifier: a support vector classifier
+clf = svm.SVC(gamma=0.001)
+# We learn the digits on the first half of the digits
+clf.fit(train_images, train_labels)
+"""
+clf = KNeighborsClassifier(n_neighbors=6) # インスタンス生成。n_neighbors:Kの数
+clf.fit(train_images, train_labels)
 
 #print(f"acc: {clf.score(test_images, test_labels)}")
 acc=clf.score(test_images, test_labels)*100
@@ -58,10 +68,10 @@ for i in range(25):
     if i==0:
         plt.title("acc:{:.2f} %".format(acc), fontsize=36)  
  
-plt.savefig('RFC/RFC_results.jpg')
+plt.savefig('RFC/K-means_results.jpg')
 plt.pause(1)
 plt.close()
-
+"""
 search_params = {
      'n_estimators'      : [75,100,150],   
       'max_features'      : [8,10,12],  
@@ -70,7 +80,7 @@ search_params = {
       'min_samples_split' : [3,4,5],  
       'max_depth'         : [13,15,18]  
 }
-"""
+
 search_params = {
      'n_estimators'      : [5, 10, 20, 30, 50, 100, 300],   
       'max_features'      : [3, 5, 10, 15, 20],  
@@ -87,7 +97,7 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             oob_score=False, random_state=2525, verbose=0,
             warm_start=False)
 acc:97.22 %
-"""
+
 
 gs = GridSearchCV(RFC(),           # 対象の機械学習モデル
                   search_params,   # 探索パラメタ辞書
@@ -130,4 +140,7 @@ for i in range(25):
 plt.savefig('RFC/RFC_best_results.jpg')
 plt.pause(1)
 plt.close()
+"""
+
+
  
