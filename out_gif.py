@@ -1,13 +1,7 @@
 from PIL import Image, ImageDraw
 
 s=72
-#N=20
-#RATE = 11025
-#fr = RATE
-#fn=51200*N/50  #*RATE/44100
-#fs=fn/fr
-#list=[0,0.2,0.5,1,2,5,10,20,50]
-#list=[2,3,4,5,6,7,8,9,10]
+
 images = []
 for i in range(0,360,5):
     im = Image.open('k-means/pca_example/tran_pca6d/pca3_PCA3d_angle_'+str(i)+'.jpg') 
